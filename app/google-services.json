@@ -1,0 +1,124 @@
+{
+  "project_info": {
+    "project_number": "277777146683",
+    "project_id": "resultadosajedrez",
+    "storage_bucket": "resultadosajedrez.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277777146683:android:32d4b5ec00a93dd364cd1e",
+        "android_client_info": {
+          "package_name": "com.buenhijogames.contadorresultadosajedrez"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgrdZVHnuiuvjY7diH3xAOlKDltYirUtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277777146683:android:5cc9f13f92a0072f64cd1e",
+        "android_client_info": {
+          "package_name": "com.buenhijogames.controlpartidasajedrez"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgrdZVHnuiuvjY7diH3xAOlKDltYirUtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277777146683:android:11b3c021ed085bdc64cd1e",
+        "android_client_info": {
+          "package_name": "com.buenhijogames.masfirestore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgrdZVHnuiuvjY7diH3xAOlKDltYirUtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277777146683:android:193d36224e506a9164cd1e",
+        "android_client_info": {
+          "package_name": "com.buenhijogames.maspruebasfirestore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgrdZVHnuiuvjY7diH3xAOlKDltYirUtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277777146683:android:eaa468f7815bc08664cd1e",
+        "android_client_info": {
+          "package_name": "com.buenhijogames.purebasenfirebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgrdZVHnuiuvjY7diH3xAOlKDltYirUtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277777146683:android:862135dff8e1d03664cd1e",
+        "android_client_info": {
+          "package_name": "om.buenhijogames.geminibot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgrdZVHnuiuvjY7diH3xAOlKDltYirUtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
