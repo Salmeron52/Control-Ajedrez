@@ -7,6 +7,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,6 +17,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -36,7 +38,11 @@ import com.buenhijogames.controlpartidasajedrez.LoginViewModel
 import com.buenhijogames.controlpartidasajedrez.R
 
 @Composable
-fun LoginView(loginViewModel: LoginViewModel, onNavigateToPrincipal: () -> Unit) {
+fun LoginView(
+    loginViewModel: LoginViewModel,
+    onNavigateToRegistro: () -> Unit,
+    onNavigateToPrincipal: () -> Unit
+) {
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -107,8 +113,10 @@ fun LoginView(loginViewModel: LoginViewModel, onNavigateToPrincipal: () -> Unit)
             trailingIcon = {
                 IconButton(onClick = { oculto = !oculto }) {
                     Icon(
-                        painterResource(if (oculto) R.drawable.icono_no_visible
-                        else R.drawable.icono_visible),
+                        painterResource(
+                            if (oculto) R.drawable.icono_no_visible
+                            else R.drawable.icono_visible
+                        ),
                         contentDescription = "Ver contraseña"
                     )
                 }
@@ -132,34 +140,20 @@ fun LoginView(loginViewModel: LoginViewModel, onNavigateToPrincipal: () -> Unit)
         ) {
             Text(text = "Entrar", fontSize = 20.sp)
         }
-
-        /*Espacio(32)
-
-        OutlinedButton(
-            onClick = {
-                loginViewModel.loginInvitado() {
-                    navController.navigate("Home")
-                }
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 30.dp, end = 30.dp)
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 18.dp),
+            horizontalArrangement = Arrangement.End,
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(text = "Entrar como INVITADO", fontSize = 24.sp)
-                Text(text = "(Sólo pruebas. Los datos se borrarán)")
-            }
-        }*/
+            Text(
+                text = "¿No tienes cuenta?",
+                fontSize = 16.sp,
+            )
 
-        /*Espacio(16)
-
-        OutlinedButton(
-            onClick = { buttonClicked = true }, // Asignar la acción de pulsar
-            modifier = Modifier.padding(8.dp)
-        ) {
-            Text("Política de privacidad", fontSize = 16.sp)
-        }*/
-
+            TextButton(
+                onClick = { onNavigateToRegistro() },
+            ) { Text(text = "Regístrate", fontSize = 16.sp) }
+        }
 
         if (loginViewModel.mostrarAlerta) {
             Alerta(

@@ -59,7 +59,6 @@ fun GuardarResultados(
             ) {
                 Titulo("Fin de la jornada")
                 Boton(
-                    ajedrezViewModel = ajedrezViewModel,
                     texto = "Guardar resultados"
                 ) {
                     ajedrezViewModel.sumarCampeonatos(ajedrezViewModel)

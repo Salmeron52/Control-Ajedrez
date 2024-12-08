@@ -12,12 +12,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.buenhijogames.controlpartidasajedrez.AjedrezViewModel
-import com.buenhijogames.controlpartidasajedrez.Boton
+import com.buenhijogames.controlpartidasajedrez.ResultadoPartida
 import com.buenhijogames.controlpartidasajedrez.Titulo
 import com.buenhijogames.controlpartidasajedrez.ui.theme.VerdeGeneral
 
 @Composable
-fun SuperficieIntroducirResultados(modifier: Modifier = Modifier, ajedrezViewModel: AjedrezViewModel) {
+fun SuperficieIntroducirResultados(
+    modifier: Modifier = Modifier,
+    ajedrezViewModel: AjedrezViewModel
+) {
     Surface(
         modifier = modifier.padding(8.dp),
         shape = RoundedCornerShape(8.dp),
@@ -41,21 +44,31 @@ fun SuperficieIntroducirResultados(modifier: Modifier = Modifier, ajedrezViewMod
                     horizontalArrangement = Arrangement.SpaceEvenly,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Boton(
-                        ajedrezViewModel = ajedrezViewModel,
-                        texto = "Gana Luis"
-                    ) { ajedrezViewModel.luisGanaLaPartida() }
-
-                    Boton(ajedrezViewModel, texto = "Gana Manolo") {
-                        ajedrezViewModel.manoloGanaLaPartida()
+                    ResultadoPartida(
+                        nombre = "Luis",
+                        onClickMenos = { nombre -> ajedrezViewModel.onClickMenos(nombre) },
+                        onClickMas = { nombre -> ajedrezViewModel.onClickMas(nombre) }
+                    )
+                    ResultadoPartida(
+                        nombre = "Manolo",
+                        onClickMenos = { nombre ->
+                            ajedrezViewModel.onClickMenos(nombre)
+                        }) { nombre ->
+                        ajedrezViewModel.onClickMas(nombre)
                     }
+
                 }
-                Boton(
-                    ajedrezViewModel = ajedrezViewModel,
-                    texto = "Tablas"
-                ) { ajedrezViewModel.tablasEnLaPartida() }
+                ResultadoPartida(
+                    nombre = "Tablas",
+                    onClickMenos = { nombre ->
+                        ajedrezViewModel.onClickMenos(nombre)
+                    }) { nombre ->
+                    ajedrezViewModel.onClickMas(nombre)
+                }
             }
         }
     }
 }
+
+
 

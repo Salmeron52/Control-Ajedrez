@@ -77,13 +77,26 @@ class AjedrezViewModel : ViewModel() {
         puntosPartidaLuis++
     }
 
+    fun rectificarLuisGanaLaPartida() {
+        puntosPartidaLuis--
+    }
+
     fun manoloGanaLaPartida() {
         puntosPartidaManolo++
+    }
+
+    fun rectificarManoloGanaLaPartida() {
+        puntosPartidaManolo--
     }
 
     fun tablasEnLaPartida() {
         puntosPartidaLuis += 0.5
         puntosPartidaManolo += 0.5
+    }
+
+    fun rectificarTablasEnLaPartida() {
+        puntosPartidaLuis -= 0.5
+        puntosPartidaManolo -= 0.5
     }
 
     fun sumarCampeonatoLuis() {
@@ -265,6 +278,35 @@ class AjedrezViewModel : ViewModel() {
                 }
                 _datosList.value = documentos
             }
+    }
+
+    fun onClickMenos(texto: String) {
+        when (texto) {
+            "Manolo" -> {
+                rectificarManoloGanaLaPartida()
+            }
+            "Luis" -> {
+                rectificarLuisGanaLaPartida()
+            }
+            "Tablas" -> {
+                rectificarTablasEnLaPartida()
+            }
+        }
+
+    }
+
+    fun onClickMas(texto: String) {
+        when (texto) {
+            "Manolo" -> {
+                manoloGanaLaPartida()
+            }
+            "Luis" -> {
+                luisGanaLaPartida()
+            }
+            "Tablas" -> {
+                tablasEnLaPartida()
+            }
+        }
     }
 
 }

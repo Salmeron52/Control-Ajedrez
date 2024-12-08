@@ -5,7 +5,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.toRoute
 import com.buenhijogames.controlpartidasajedrez.AjedrezViewModel
 import com.buenhijogames.controlpartidasajedrez.LoginViewModel
 import com.buenhijogames.controlpartidasajedrez.login.LoginView
@@ -30,9 +29,9 @@ fun Navegacion(
                 navController.navigate(Principal)
             }
         }
-            /*Tarjeta( idDelDocumento =  , ajedrezViewModel = ajedrezViewModel) {
-            navController.navigate(Principal)
-        } }*/
+        /*Tarjeta( idDelDocumento =  , ajedrezViewModel = ajedrezViewModel) {
+        navController.navigate(Principal)
+    } }*/
         composable<Registro> {
             RegisterView(loginViewModel = loginViewModel) {
                 navController.navigate(Login) {
@@ -40,7 +39,13 @@ fun Navegacion(
                 }
             }
         }
-        composable<Login> { LoginView(loginViewModel) { navController.navigate(Principal) } }
+        composable<Login> {
+            LoginView(
+                loginViewModel,
+                onNavigateToRegistro = { navController.navigate(Registro) }) {
+                navController.navigate(Principal)
+            }
+        }
         composable<Principal> {
             PantallaPrincipal(
                 ajedrezViewModel = ajedrezViewModel,

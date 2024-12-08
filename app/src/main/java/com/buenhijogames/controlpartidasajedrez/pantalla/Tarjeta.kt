@@ -63,7 +63,6 @@ fun Tarjeta(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Boton(
-                        ajedrezViewModel = ajedrezViewModel,
                         color = VerdeOscuro,
                         texto = "Cerrar sesión",
                         onClick = {
