@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,13 +17,12 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-class AjedrezViewModel : ViewModel() {
+class AjedrezViewModel() : ViewModel() {
 
     val firestore = Firebase.firestore
     val auth: FirebaseAuth = Firebase.auth
@@ -34,6 +34,13 @@ class AjedrezViewModel : ViewModel() {
 
     var puntosPartidaLuis by mutableDoubleStateOf(0.0)
     var puntosPartidaManolo by mutableDoubleStateOf(0.0)
+
+
+    private var soyYo by mutableStateOf(false)
+
+    fun soyYo(): Boolean {
+        return (auth.currentUser?.email == "manuelsalmeroncerdan@gmail.com")
+    }
 
     //fecha de hoy en formato String
     fun fechaHoy(): String {
@@ -125,6 +132,10 @@ class AjedrezViewModel : ViewModel() {
         estado.campeonatoManolo = 0.0
     }
 
+    fun hayResultado(): Boolean {
+        return (puntosPartidaLuis != 0.0 || puntosPartidaManolo != 0.0)
+    }
+
     fun traerUltimaTarjeta() {
         viewModelScope.launch {
             firestore
@@ -142,6 +153,7 @@ class AjedrezViewModel : ViewModel() {
                             generalLuis = nota?.generalLuis ?: 0.0,
                             generalManolo = nota?.generalManolo ?: 0.0,
                             email = nota?.email ?: "",
+                            nombreUsuario = nota?.nombreUsuario ?: "",
                             fecha = nota?.fecha ?: "",
                             hora = nota?.hora ?: "",
                             dia = nota?.dia ?: ""
@@ -151,38 +163,12 @@ class AjedrezViewModel : ViewModel() {
         }
     }
 
-
-    fun guardarCampeonato() {
-        val email = auth.currentUser?.email
-        val unCampeonato = hashMapOf(
-            "campeonatoLuis" to estado.campeonatoLuis,
-            "campeonatoManolo" to estado.campeonatoManolo,
-            "email" to email.toString()
-        )
-        firestore
-            .collection("campeonato")
-            .document("id_uno")
-            .set(unCampeonato) // sobreescritura de datos en la colección campeonato
-    }
-
-    fun guardarGeneral() {
-        val email = auth.currentUser?.email
-        val unGeneral = hashMapOf(
-            "generalLuis" to estado.generalLuis,
-            "generalManolo" to estado.generalManolo,
-            "email" to email.toString()
-        )
-        firestore
-            .collection("general")
-            .document("id_uno")
-            .set(unGeneral)
-    }
-
     fun guardarUltimaTarjeta(
         puntosPartidaLuis: Double,
         puntosPartidaManolo: Double
     ) {
         val email = auth.currentUser?.email
+        val nombreUsuario = auth.currentUser?.displayName // Añadir el nombre de usuario
 
         viewModelScope.launch(Dispatchers.IO) {
             val nuevaTarjeta = hashMapOf(
@@ -195,7 +181,8 @@ class AjedrezViewModel : ViewModel() {
                 "campeonatoManolo" to estado.campeonatoManolo,
                 "generalLuis" to estado.generalLuis,
                 "generalManolo" to estado.generalManolo,
-                "email" to email.toString()
+                "email" to email.toString(),
+                "nombreUsuario" to nombreUsuario.toString()
             )
 
             firestore

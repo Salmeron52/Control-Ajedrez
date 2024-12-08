@@ -1,5 +1,6 @@
 package com.buenhijogames.controlpartidasajedrez.pantalla
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,12 +25,14 @@ import com.buenhijogames.controlpartidasajedrez.AjedrezViewModel
 import com.buenhijogames.controlpartidasajedrez.Boton
 import com.buenhijogames.controlpartidasajedrez.ui.theme.VerdeOscuro
 import com.buenhijogames.controlpartidasajedrez.ui.theme.VerdeTotal
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
 fun Tarjeta(
     modifier: Modifier = Modifier,
     ajedrezViewModel: AjedrezViewModel,
-    onNavigateToPrincipal: () -> Unit
+    onNavigateToPrincipal: () -> Unit,
+    onNavigateToLogin: () -> Unit
 ) {
     LaunchedEffect(Unit) { ajedrezViewModel.traerUltimaTarjeta() }
 
@@ -55,7 +58,6 @@ fun Tarjeta(
                 verticalArrangement = Arrangement.Center
             ) {
                 SuperficieCampeonato(ajedrezViewModel = ajedrezViewModel)
-                SuperficieParcial(ajedrezViewModel = ajedrezViewModel)
                 SuperficieGeneral(ajedrezViewModel = ajedrezViewModel)
 
                 Row(
@@ -67,11 +69,15 @@ fun Tarjeta(
                         texto = "Cerrar sesión",
                         onClick = {
                             ajedrezViewModel.puntosACero()
-                            ajedrezViewModel.cerrarSesion()
-                            onNavigateToPrincipal()
+                            if (ajedrezViewModel.soyYo()) {
+                                onNavigateToPrincipal()
+                            } else {
+                                ajedrezViewModel.cerrarSesion()
+                                onNavigateToLogin()
+                            }
                         }
                     )
-                    Spacer(modifier =  Modifier.width(64.dp))
+                    Spacer(modifier = Modifier.width(64.dp))
                     Portapapeles(
                         clipBoard = clipBoard,
                         ajedrezViewModel = ajedrezViewModel,

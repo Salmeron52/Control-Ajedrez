@@ -61,13 +61,16 @@ fun GuardarResultados(
                 Boton(
                     texto = "Guardar resultados"
                 ) {
-                    ajedrezViewModel.sumarCampeonatos(ajedrezViewModel)
-                    ajedrezViewModel.guardarUltimaTarjeta(
-                        ajedrezViewModel.puntosPartidaLuis,
-                        ajedrezViewModel.puntosPartidaManolo
-                    )
-                    ajedrezViewModel.calcularCampeonato(estado, ajedrezViewModel)
-                    onNavigateToTarjeta()
+                    if(ajedrezViewModel.hayResultado()) {
+                        ajedrezViewModel.sumarCampeonatos(ajedrezViewModel)
+                        ajedrezViewModel.guardarUltimaTarjeta(
+                            ajedrezViewModel.puntosPartidaLuis,
+                            ajedrezViewModel.puntosPartidaManolo
+                        )
+                        ajedrezViewModel.calcularCampeonato(estado, ajedrezViewModel)
+                        onNavigateToTarjeta()
+                    }
+
                 }
             }
         }

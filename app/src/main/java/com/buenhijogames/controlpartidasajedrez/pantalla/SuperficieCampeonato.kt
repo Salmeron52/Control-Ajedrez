@@ -20,8 +20,6 @@ import com.buenhijogames.controlpartidasajedrez.ui.theme.VerdeTotal
 @Composable
 fun SuperficieCampeonato(modifier: Modifier = Modifier, ajedrezViewModel: AjedrezViewModel) {
     LaunchedEffect(Unit) {
-        /*ajedrezViewModel.traerCampeonatosManolo()
-        ajedrezViewModel.traerCampeonatosLuis()*/
         ajedrezViewModel.traerUltimaTarjeta()
     }
     val estado: Estado = ajedrezViewModel.estado
@@ -48,8 +46,10 @@ fun SuperficieCampeonato(modifier: Modifier = Modifier, ajedrezViewModel: Ajedre
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Titulo(texto = "Campeonato")
-                Titulo("Luis: ${estado.campeonatoLuis}" +
-                        " - Manolo: ${estado.campeonatoManolo}")
+                Titulo(
+                    "Luis: ${estado.campeonatoLuis}" +
+                            " - Manolo: ${estado.campeonatoManolo}"
+                )
             }
         }
     }

@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.buenhijogames.controlpartidasajedrez.navigation.Navegacion
-import com.buenhijogames.controlpartidasajedrez.pantalla.PantallaPrincipal
 import com.buenhijogames.controlpartidasajedrez.ui.theme.ControlPartidasAjedrezTheme
 
 class MainActivity : ComponentActivity() {

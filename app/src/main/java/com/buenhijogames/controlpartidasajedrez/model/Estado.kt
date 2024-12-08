@@ -3,6 +3,7 @@ package com.buenhijogames.controlpartidasajedrez.model
 data class Estado(
     val id: String = "",
     val email: String = "",
+    val nombreUsuario: String = "",
     val fecha: String = "",
     val hora: String = "",
     val dia: String = "",
@@ -16,6 +17,7 @@ data class Estado(
     constructor() : this(
         id = "",
         email = "",
+        nombreUsuario = "",
         fecha = "",
         hora = "",
         dia = "",

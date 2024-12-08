@@ -27,17 +27,13 @@ fun Navegacion(
         composable<PantallaNegra> {
             PantallaNegra(navController = navController)
         }
-
         composable<Tarjeta> {
             Tarjeta(
-                ajedrezViewModel = ajedrezViewModel
-            ) {
-                navController.navigate(Principal)
-            }
+                ajedrezViewModel = ajedrezViewModel,
+                onNavigateToPrincipal = { navController.navigate(Principal) },
+                onNavigateToLogin = { navController.navigate(Login) }
+            )
         }
-        /*Tarjeta( idDelDocumento =  , ajedrezViewModel = ajedrezViewModel) {
-        navController.navigate(Principal)
-    } }*/
         composable<Registro> {
             RegisterView(loginViewModel = loginViewModel) {
                 navController.navigate(Login) {
@@ -47,10 +43,13 @@ fun Navegacion(
         }
         composable<Login> {
             LoginView(
-                loginViewModel,
-                onNavigateToRegistro = { navController.navigate(Registro) }) {
-                navController.navigate(Principal)
-            }
+                loginViewModel = loginViewModel,
+                ajedrezViewModel = ajedrezViewModel,
+                onNavigateToRegistro = { navController.navigate(Registro) },
+                onNavigateToPrincipal = { navController.navigate(Principal) },
+                onNavigateToTarjeta = { navController.navigate(Tarjeta) },
+
+            )
         }
         composable<Principal> {
             PantallaPrincipal(

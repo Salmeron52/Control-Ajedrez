@@ -22,8 +22,6 @@ import com.buenhijogames.controlpartidasajedrez.ui.theme.VerdeTotal
 @Composable
 fun SuperficieGeneral(modifier: Modifier = Modifier, ajedrezViewModel: AjedrezViewModel) {
     LaunchedEffect(Unit) {
-        /*ajedrezViewModel.traerGeneralManolo()
-        ajedrezViewModel.traerGeneralLuis()*/
         ajedrezViewModel.traerTodasLasTarjetas()
     }
     val estado: Estado = ajedrezViewModel.estado

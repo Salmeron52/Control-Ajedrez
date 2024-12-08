@@ -3,6 +3,7 @@ package com.buenhijogames.controlpartidasajedrez.login
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
@@ -32,16 +33,20 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.buenhijogames.controlpartidasajedrez.AjedrezViewModel
 import com.buenhijogames.controlpartidasajedrez.Alerta
 import com.buenhijogames.controlpartidasajedrez.Espacio
 import com.buenhijogames.controlpartidasajedrez.LoginViewModel
 import com.buenhijogames.controlpartidasajedrez.R
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
 fun LoginView(
     loginViewModel: LoginViewModel,
+    ajedrezViewModel: AjedrezViewModel,
     onNavigateToRegistro: () -> Unit,
-    onNavigateToPrincipal: () -> Unit
+    onNavigateToPrincipal: () -> Unit,
+    onNavigateToTarjeta: () -> Unit
 ) {
 
     Column(
@@ -131,7 +136,12 @@ fun LoginView(
         OutlinedButton(
             onClick = {
                 loginViewModel.login(email, password) {
-                    onNavigateToPrincipal()
+                    if (FirebaseAuth.getInstance().currentUser?.email.toString() == "manuelsalmeroncerdan@gmail.com") {
+                        ajedrezViewModel.soyYo()
+                        onNavigateToPrincipal()
+                    } else {
+                        onNavigateToTarjeta()
+                    }
                 }
             },
             modifier = Modifier
@@ -141,7 +151,9 @@ fun LoginView(
             Text(text = "Entrar", fontSize = 20.sp)
         }
         Row(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 18.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 18.dp),
             horizontalArrangement = Arrangement.End,
             verticalAlignment = Alignment.CenterVertically,
         ) {
