@@ -10,6 +10,7 @@ import com.buenhijogames.controlpartidasajedrez.LoginViewModel
 import com.buenhijogames.controlpartidasajedrez.login.LoginView
 import com.buenhijogames.controlpartidasajedrez.login.RegisterView
 import com.buenhijogames.controlpartidasajedrez.pantalla.GuardarResultados
+import com.buenhijogames.controlpartidasajedrez.pantalla.PantallaNegra
 import com.buenhijogames.controlpartidasajedrez.pantalla.PantallaPrincipal
 import com.buenhijogames.controlpartidasajedrez.pantalla.Tarjeta
 
@@ -21,7 +22,12 @@ fun Navegacion(
 ) {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = Principal) {
+    NavHost(navController = navController, startDestination = PantallaNegra) {
+
+        composable<PantallaNegra> {
+            PantallaNegra(navController = navController)
+        }
+
         composable<Tarjeta> {
             Tarjeta(
                 ajedrezViewModel = ajedrezViewModel

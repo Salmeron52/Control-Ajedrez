@@ -17,3 +17,6 @@ object Tarjeta
 
 @Serializable
 object GuardarResultados
+
+@Serializable
+object PantallaNegra
