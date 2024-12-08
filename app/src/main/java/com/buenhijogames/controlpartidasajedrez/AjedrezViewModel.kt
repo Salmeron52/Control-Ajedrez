@@ -36,8 +36,6 @@ class AjedrezViewModel() : ViewModel() {
     var puntosPartidaManolo by mutableDoubleStateOf(0.0)
 
 
-    private var soyYo by mutableStateOf(false)
-
     fun soyYo(): Boolean {
         return (auth.currentUser?.email == "manuelsalmeroncerdan@gmail.com")
     }
